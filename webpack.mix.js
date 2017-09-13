@@ -12,4 +12,5 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
+    .copy('node_modules/element-ui/lib/theme-default', 'public/css/element-theme')
    .sass('resources/assets/sass/app.scss', 'public/css');

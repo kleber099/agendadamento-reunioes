@@ -24,7 +24,7 @@ class ReuniaoController extends Controller
      */
     public function create()
     {
-        //
+        return view('reuniao.criar');
     }
 
     /**
@@ -35,7 +35,7 @@ class ReuniaoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return response("ok");
     }
 
     /**
