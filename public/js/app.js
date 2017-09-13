@@ -44906,6 +44906,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -44915,16 +44918,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            reuniao: new __WEBPACK_IMPORTED_MODULE_1__dominio_Reuniao__["a" /* default */]()
+            reuniao: new __WEBPACK_IMPORTED_MODULE_1__dominio_Reuniao__["a" /* default */](),
+            erros: {
+                titulo: [],
+                local: [],
+                inicio: [],
+                fim: []
+            }
         };
     },
 
     methods: {
         cadastrar: function cadastrar() {
+            var _this = this;
+
+            this.erros = {};
+
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/reunioes', this.reuniao).then(function (resp) {
                 console.log("Cadastro Realizado com sucesso");
-            }, function (err) {
-                console.log("Erro ao cadastrar");
+            }).catch(function (err) {
+                _this.erros = err.response.data.errors;
             });
         }
     }
@@ -44960,7 +44973,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('form', {
     staticClass: "form-horizontal"
   }, [_c('div', {
-    staticClass: "form-group"
+    class: _vm.erros.titulo ? 'form-group has-error' : 'form-group'
   }, [_c('label', {
     staticClass: "col-md-4 control-label",
     attrs: {
@@ -44990,7 +45003,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.reuniao.titulo = $event.target.value
       }
     }
-  })])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), (_vm.erros.titulo) ? _c('span', {
+    staticClass: "help-block"
+  }, [_c('strong', [_vm._v(_vm._s(_vm.erros.titulo[0]))])]) : _vm._e()])]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('label', {
     staticClass: "col-md-4 control-label",

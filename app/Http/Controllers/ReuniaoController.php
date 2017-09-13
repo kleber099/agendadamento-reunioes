@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReuniaoRequest;
 use Illuminate\Http\Request;
 
 class ReuniaoController extends Controller
@@ -33,7 +34,7 @@ class ReuniaoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReuniaoRequest $request)
     {
         return response("ok");
     }
