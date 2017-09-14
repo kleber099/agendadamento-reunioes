@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Business\ReuniaoBusiness;
+
 use App\Http\Requests\ReuniaoRequest;
 use Illuminate\Http\Request;
 
 class ReuniaoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->reuniaoBusiness = new  ReuniaoBusiness();
+    }
 
     /**
      * Display a listing of the resource.
@@ -36,7 +43,9 @@ class ReuniaoController extends Controller
      */
     public function store(ReuniaoRequest $request)
     {
-        return response("ok");
+        $data = $request->all();
+
+        $this->reuniaoBusiness->adicionar($data);
     }
 
     /**

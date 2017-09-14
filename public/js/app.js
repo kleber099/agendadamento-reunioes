@@ -44909,6 +44909,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -44932,13 +44953,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         cadastrar: function cadastrar() {
             var _this = this;
 
-            this.erros = {};
+            this.limparErros();
 
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post('/reunioes', this.reuniao).then(function (resp) {
                 console.log("Cadastro Realizado com sucesso");
             }).catch(function (err) {
-                _this.erros = err.response.data.errors;
+                _this.tratarErros(err.response.data.errors);
             });
+        },
+        limparErros: function limparErros() {
+            this.erros = {
+                titulo: [],
+                local: [],
+                inicio: [],
+                fim: []
+            };
+        },
+        tratarErros: function tratarErros(erros) {
+            if (erros.titulo) {
+                this.erros.titulo = erros.titulo;
+            }
+
+            if (erros.local) {
+                this.erros.local = erros.local;
+            }
+
+            if (erros.inicio) {
+                this.erros.inicio = erros.inicio;
+            }
+
+            if (erros.fim) {
+                this.erros.fim = erros.fim;
+            }
         }
     }
 
@@ -44973,7 +45019,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('form', {
     staticClass: "form-horizontal"
   }, [_c('div', {
-    class: _vm.erros.titulo ? 'form-group has-error' : 'form-group'
+    class: _vm.erros.titulo.length ? 'form-group has-error' : 'form-group'
   }, [_c('label', {
     staticClass: "col-md-4 control-label",
     attrs: {
@@ -45003,10 +45049,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.reuniao.titulo = $event.target.value
       }
     }
-  }), _vm._v(" "), (_vm.erros.titulo) ? _c('span', {
+  }), _vm._v(" "), (_vm.erros.titulo.length) ? _c('span', {
     staticClass: "help-block"
   }, [_c('strong', [_vm._v(_vm._s(_vm.erros.titulo[0]))])]) : _vm._e()])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
+    class: _vm.erros.local.length ? 'form-group has-error' : 'form-group'
   }, [_c('label', {
     staticClass: "col-md-4 control-label",
     attrs: {
@@ -45035,8 +45081,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.reuniao.local = $event.target.value
       }
     }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
+  }), _vm._v(" "), (_vm.erros.local.length) ? _c('span', {
+    staticClass: "help-block"
+  }, [_c('strong', [_vm._v(_vm._s(_vm.erros.local[0]))])]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    class: _vm.erros.inicio.length ? 'form-group has-error' : 'form-group'
   }, [_c('label', {
     staticClass: "col-md-4 control-label",
     attrs: {
@@ -45065,8 +45113,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.reuniao.inicio = $event.target.value
       }
     }
-  })])]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
+  }), _vm._v(" "), (_vm.erros.inicio.length) ? _c('span', {
+    staticClass: "help-block"
+  }, [_c('strong', [_vm._v(_vm._s(_vm.erros.inicio[0]))])]) : _vm._e()])]), _vm._v(" "), _c('div', {
+    class: _vm.erros.fim.length ? 'form-group has-error' : 'form-group'
   }, [_c('label', {
     staticClass: "col-md-4 control-label",
     attrs: {
@@ -45095,7 +45145,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.reuniao.fim = $event.target.value
       }
     }
-  })])]), _vm._v(" "), _c('div', {
+  }), _vm._v(" "), (_vm.erros.fim.length) ? _c('span', {
+    staticClass: "help-block"
+  }, [_c('strong', [_vm._v(_vm._s(_vm.erros.fim[0]))])]) : _vm._e()])]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('div', {
     staticClass: "col-md-6 col-md-offset-4"

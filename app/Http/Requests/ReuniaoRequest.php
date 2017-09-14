@@ -27,7 +27,7 @@ class ReuniaoRequest extends FormRequest
             'titulo' => 'required|max:255',
             'local' => 'required',
             'inicio' => 'required|date',
-            'fim' => 'required|date|after:inicio',
+            'fim' => 'required|date|after_or_equal:inicio',
         ];
     }
 }
