@@ -45,7 +45,9 @@ class ReuniaoController extends Controller
     {
         $data = $request->all();
 
-        $this->reuniaoBusiness->adicionar($data);
+        $reuniao = $this->reuniaoBusiness->adicionar($data);
+
+        return response()->json($reuniao);
     }
 
     /**
@@ -67,7 +69,7 @@ class ReuniaoController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('reuniao.alterar', ['id' => $id]);
     }
 
     /**

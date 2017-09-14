@@ -9,6 +9,8 @@ class ReuniaoFacadeBD
 
     public function adicionar($data) {
 
-        Reuniao::create($data);
+        $reuniao = Reuniao::create($data);
+
+        return $reuniao;
     }
 }

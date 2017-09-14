@@ -9,6 +9,9 @@ class ReuniaoBusiness
 
     public function adicionar($data) {
         $reuniaoFacadeBD = new ReuniaoFacadeBD();
-        $reuniaoFacadeBD->adicionar($data);
+
+        $reuniao = $reuniaoFacadeBD->adicionar($data);
+
+        return $reuniao;
     }
 }
