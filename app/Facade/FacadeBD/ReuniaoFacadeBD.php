@@ -13,4 +13,16 @@ class ReuniaoFacadeBD
 
         return $reuniao;
     }
+
+    public function encontrar($id) {
+        return Reuniao::find($id);
+    }
+
+    public function editar($id, $data) {
+        $reuniao = $this->encontrar($id);
+
+        $reuniao->update($data);
+
+        return $reuniao;
+    }
 }

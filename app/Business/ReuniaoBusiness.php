@@ -14,4 +14,18 @@ class ReuniaoBusiness
 
         return $reuniao;
     }
+
+    public function encontrar($id) {
+        $reuniaoFacadeBD = new ReuniaoFacadeBD();
+
+        return $reuniaoFacadeBD->encontrar($id);
+    }
+
+    public function editar($id, $data) {
+        $reuniaoFacadeBD = new ReuniaoFacadeBD();
+
+        $reuniao = $reuniaoFacadeBD->editar($id, $data);
+
+        return $reuniao;
+    }
 }

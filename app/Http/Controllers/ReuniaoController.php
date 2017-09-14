@@ -58,7 +58,8 @@ class ReuniaoController extends Controller
      */
     public function show($id)
     {
-        //
+        $reuniao = $this->reuniaoBusiness->encontrar($id);
+        return response()->json($reuniao);
     }
 
     /**
@@ -79,9 +80,13 @@ class ReuniaoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ReuniaoRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $reuniao = $this->reuniaoBusiness->editar($id, $data);
+
+        return response()->json($reuniao);
     }
 
     /**

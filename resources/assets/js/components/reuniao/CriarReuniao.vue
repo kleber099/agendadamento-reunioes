@@ -82,7 +82,10 @@
             }
         },
         mounted() {
-            console.log(this.id);
+            if(this.id) {
+                this.encontrar();
+            }
+
         },
         methods: {
             cadastrar() {
@@ -92,7 +95,7 @@
                 if(this.id) {
                     this.atualizar()
                 } else {
-                    this.cadastrar();
+                    this.inserir();
                 }
             },
 
@@ -105,6 +108,12 @@
             atualizar() {
                 axios.put(`/reunioes/${this.id}`, this.reuniao)
                     .then(resp => this.sucesso = "Reuniao Atualizada",
+                        err => this.tratarErros(err.response.data.errors)
+                    );
+            },
+            encontrar() {
+                axios.get(`/reunioes/${this.id}`)
+                    .then(resp => { this.reuniao = resp.data},
                         err => this.tratarErros(err.response.data.errors)
                     );
             },

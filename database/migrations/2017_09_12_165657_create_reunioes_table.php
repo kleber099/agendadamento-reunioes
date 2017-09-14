@@ -17,8 +17,8 @@ class CreateReunioesTable extends Migration
             $table->increments('id');
             $table->string('titulo');
             $table->string('local');
-            $table->dateTime('inicio');
-            $table->dateTime('fim');
+            $table->date('inicio');
+            $table->date('fim');
 
             $table->timestamps();
         });
@@ -41,8 +41,10 @@ class CreateReunioesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reuniaos');
-
         Schema::dropIfExists('reuniao_user');
+
+        Schema::dropIfExists('reunioes');
+
+
     }
 }
