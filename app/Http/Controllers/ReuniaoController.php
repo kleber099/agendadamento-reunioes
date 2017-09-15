@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Business\ReuniaoBusiness;
 
 use App\Http\Requests\ReuniaoRequest;
+use App\Reuniao;
 use Illuminate\Http\Request;
 
 class ReuniaoController extends Controller
@@ -22,7 +23,8 @@ class ReuniaoController extends Controller
      */
     public function index()
     {
-        //
+        $eventos = [ ['title' => 'Event1', 'start' => '2017-09-12'], ['title' => 'Event2', 'start' => '2017-09-22']];
+        return response()->json($eventos);
     }
 
     /**

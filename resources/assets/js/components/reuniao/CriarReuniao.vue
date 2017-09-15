@@ -7,7 +7,7 @@
                 <label for="titulo" class="col-md-4 control-label">Titulo</label>
 
                 <div class="col-md-6">
-                    <input id="titulo" type="text" class="form-control" v-model="reuniao.titulo" autofocus>
+                    <input id="titulo" type="text" class="form-control" v-model="reuniao.titulo">
 
                     <span class="help-block" v-if="erros.titulo.length">
                         <strong>{{ erros.titulo[0] }}</strong>
@@ -51,6 +51,8 @@
                 </div>
             </div>
 
+            <usuario></usuario>
+
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                     <button type="submit" class="btn btn-primary" @click.prevent="cadastrar">
@@ -66,9 +68,11 @@
     import axios from 'axios'
 
     import Reuniao from '../../dominio/Reuniao';
+    import Usuario from '../Usuario/Usuario.vue';
 
     export default {
         props: ['id'],
+        components: {Usuario},
         data() {
             return {
                 reuniao: new Reuniao(),
@@ -79,10 +83,10 @@
                     fim: []
                 },
                 sucesso: ''
-            }
+            };
         },
         mounted() {
-            if(this.id) {
+            if (this.id) {
                 this.encontrar();
             }
 
@@ -91,8 +95,10 @@
             cadastrar() {
                 this.sucesso = '';
                 this.limparErros();
+                this.$store.commit('alterarUsuarios');
+                this.reuniao.usuarios = this.$store.state.reuniao.usuarios;
 
-                if(this.id) {
+                if (this.id) {
                     this.atualizar()
                 } else {
                     this.inserir();
@@ -101,19 +107,29 @@
 
             inserir(){
                 axios.post('/reunioes', this.reuniao)
-                    .then(resp => this.sucesso = "Reuniao Adicionada",
+                    .then(resp => {
+                            this.sucesso = "Reuniao Adicionada";
+                            this.$store.commit('atualizarReuniao', resp.data)
+                        },
                         err => this.tratarErros(err.response.data.errors)
                     );
             },
             atualizar() {
                 axios.put(`/reunioes/${this.id}`, this.reuniao)
-                    .then(resp => this.sucesso = "Reuniao Atualizada",
+                    .then(resp => {
+                            this.sucesso = "Reuniao Atualizada";
+                            this.$store.commit('atualizarReuniao', resp.data)
+                        },
                         err => this.tratarErros(err.response.data.errors)
-                    );
+                    )
+                ;
             },
             encontrar() {
                 axios.get(`/reunioes/${this.id}`)
-                    .then(resp => { this.reuniao = resp.data},
+                    .then(resp => {
+                            this.reuniao = resp.data;
+                            this.$store.commit('atualizarReuniao', resp.data)
+                        },
                         err => this.tratarErros(err.response.data.errors)
                     );
             },
