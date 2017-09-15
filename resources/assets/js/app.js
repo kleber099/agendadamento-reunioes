@@ -40,7 +40,7 @@ $('#calendar').fullCalendar({
     locale: 'pt-br',
     events: '/reunioes',
 
-    eventClick: function(calEvent, jsEvent, view) {
+    /*eventClick: function(calEvent, jsEvent, view) {
 
         alert('Event: ' + calEvent.title);
         alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
@@ -61,5 +61,5 @@ $('#calendar').fullCalendar({
         // change the day's background color just for fun
         $(this).css('background-color', 'red');
 
-    }
+    }*/
 });

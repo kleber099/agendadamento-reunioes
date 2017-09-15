@@ -23,7 +23,7 @@ class ReuniaoController extends Controller
      */
     public function index()
     {
-        $eventos = [ ['title' => 'Event1', 'start' => '2017-09-12'], ['title' => 'Event2', 'start' => '2017-09-22']];
+        $eventos = $this->reuniaoBusiness->eventos();
         return response()->json($eventos);
     }
 

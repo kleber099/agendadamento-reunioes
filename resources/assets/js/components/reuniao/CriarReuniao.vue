@@ -95,8 +95,6 @@
             cadastrar() {
                 this.sucesso = '';
                 this.limparErros();
-                this.$store.commit('alterarUsuarios');
-                this.reuniao.usuarios = this.$store.state.reuniao.usuarios;
 
                 if (this.id) {
                     this.atualizar()

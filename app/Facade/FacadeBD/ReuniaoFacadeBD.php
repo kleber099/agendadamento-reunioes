@@ -25,4 +25,10 @@ class ReuniaoFacadeBD
 
         return $reuniao;
     }
+
+    public function eventos() {
+        $reuniao = new Reuniao();
+
+        return $reuniao->eventos();
+    }
 }

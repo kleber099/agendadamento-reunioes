@@ -28,4 +28,12 @@ class ReuniaoBusiness
 
         return $reuniao;
     }
+
+    public function eventos() {
+        $reuniaoFacadeBD = new ReuniaoFacadeBD();
+
+        $eventos = $reuniaoFacadeBD->eventos();
+
+        return $eventos;
+    }
 }
