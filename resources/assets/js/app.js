@@ -12,9 +12,9 @@ import ElementUI from 'element-ui';
 import Vuex from 'vuex';
 import fullCalendar from 'fullcalendar';
 
+import store from './store';
 
 
-//import Vuex from 'vuex';
 
 window.Vue = require('vue');
 window.Vue.use(ElementUI);
@@ -28,32 +28,19 @@ window.Vue.use(Vuex);
 
 Vue.component('example', require('./components/Example.vue'));
 
+
 const app = new Vue({
     el: '#app',
+    store,
     components: {CriarReuniao}
 });
 
 
 $('#calendar').fullCalendar({
     locale: 'pt-br',
-    events: [
-        {
-            title: 'event1',
-            start: '2017-09-12'
-        },
-        {
-            title: 'event2',
-            start: '2017-09-14',
-            end: '2017-09-20'
-        },
-        {
-            title: 'event3',
-            start: '2017-09-24T12:30:00',
-            allDay: false // will make the time show
-        }
-    ],
+    events: '/reunioes',
 
-    eventClick: function(calEvent, jsEvent, view) {
+    /*eventClick: function(calEvent, jsEvent, view) {
 
         alert('Event: ' + calEvent.title);
         alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
@@ -74,5 +61,5 @@ $('#calendar').fullCalendar({
         // change the day's background color just for fun
         $(this).css('background-color', 'red');
 
-    }
+    }*/
 });

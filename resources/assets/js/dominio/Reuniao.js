@@ -4,6 +4,6 @@ export default class Reuniao {
         this.titulo = reuniao.titulo;
         this.inicio = reuniao.inicio;
         this.fim = reuniao.fim;
-        this.usuarios = reuniao.usuarios;
+        this.usuarios = [];
     }
 }

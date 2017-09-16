@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Business\ReuniaoBusiness;
 
 use App\Http\Requests\ReuniaoRequest;
+use App\Reuniao;
 use Illuminate\Http\Request;
 
 class ReuniaoController extends Controller
@@ -22,7 +23,8 @@ class ReuniaoController extends Controller
      */
     public function index()
     {
-        //
+        $eventos = $this->reuniaoBusiness->eventos();
+        return response()->json($eventos);
     }
 
     /**
