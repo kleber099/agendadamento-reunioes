@@ -1,16 +1,16 @@
 <template>
-    <div>
-        <label>
-            <span>Participantes</span>
+    <div class="form-group">
+        <label for="inicio" class="col-md-4 control-label">Participante</label>
+        <div class="col-md-6">
             <el-autocomplete
                     class="inline-input"
                     v-model="texto"
                     :fetch-suggestions="querySearch"
                     :trigger-on-focus="false"
-                    placeholder="Please Input"
+                    placeholder="Nome de Usuário"
                     @select="handleSelect"
             ></el-autocomplete>
-        </label>
+        </div>
     </div>
 </template>
 
