@@ -12,7 +12,7 @@ export const mutations = {
     atualizarReuniao(state, reuniao) {
         state.reuniao = reuniao;
     },
-    adicionarUsuarioReuniao(state, usuario) {
-        state.reuniao.usuarios.push(usuario);
+    adicionarUsuarioReuniao(state, user) {
+        state.reuniao.users.push(user);
     }
 };

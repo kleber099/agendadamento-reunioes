@@ -36,12 +36,12 @@ import Usuario from '../../dominio/Usuario';
 
                             //monta a lista de resultados
                             let links = this.links.map(item => {
-                                const usuario = item;
-                                usuario.id = item.id;
-                                usuario.value = item.name;
-                                usuario.nome = item.name;
-                                usuario.email = item.email;
-                                return usuario;
+                                const user = item;
+                                user.id = item.id;
+                                user.value = item.name;
+                                user.name = item.name;
+                                user.email = item.email;
+                                return user;
                             });
 
                             this.results = queryString ? links.filter(this.createFilter(queryString)) : links;
@@ -63,8 +63,8 @@ import Usuario from '../../dominio/Usuario';
                 };
             },
             handleSelect(item) {
-                let usuario = new Usuario(item);
-                this.$store.commit('adicionarUsuarioReuniao', usuario);
+                let user = new Usuario(item);
+                this.$store.commit('adicionarUsuarioReuniao', user);
                 this.texto = '';
 
             }

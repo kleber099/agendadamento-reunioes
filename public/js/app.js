@@ -27498,7 +27498,7 @@ var Reuniao = function Reuniao() {
     this.titulo = reuniao.titulo;
     this.inicio = reuniao.inicio;
     this.fim = reuniao.fim;
-    this.usuarios = [];
+    this.users = [];
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (Reuniao);
@@ -61567,10 +61567,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
 
+    computed: {
+        users: function users() {
+            return this.$store.state.reuniao.users;
+        }
+    },
     methods: {
         cadastrar: function cadastrar() {
             this.sucesso = '';
             this.limparErros();
+
+            this.reuniao.users = this.users;
 
             if (this.id) {
                 this.atualizar();
@@ -61703,8 +61710,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: { PesquisarUsuario: __WEBPACK_IMPORTED_MODULE_0__PesquisarUsuario_vue___default.a, UsuarioItem: __WEBPACK_IMPORTED_MODULE_1__UsuarioItem___default.a },
     computed: {
-        usuarios: function usuarios() {
-            return this.$store.state.reuniao.usuarios;
+        users: function users() {
+            return this.$store.state.reuniao.users;
         }
     }
 });
@@ -61795,12 +61802,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     //monta a lista de resultados
                     var links = _this.links.map(function (item) {
-                        var usuario = item;
-                        usuario.id = item.id;
-                        usuario.value = item.name;
-                        usuario.nome = item.name;
-                        usuario.email = item.email;
-                        return usuario;
+                        var user = item;
+                        user.id = item.id;
+                        user.value = item.name;
+                        user.name = item.name;
+                        user.email = item.email;
+                        return user;
                     });
 
                     _this.results = queryString ? links.filter(_this.createFilter(queryString)) : links;
@@ -61822,8 +61829,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             };
         },
         handleSelect: function handleSelect(item) {
-            var usuario = new __WEBPACK_IMPORTED_MODULE_0__dominio_Usuario__["a" /* default */](item);
-            this.$store.commit('adicionarUsuarioReuniao', usuario);
+            var user = new __WEBPACK_IMPORTED_MODULE_0__dominio_Usuario__["a" /* default */](item);
+            this.$store.commit('adicionarUsuarioReuniao', user);
             this.texto = '';
         }
     }
@@ -61837,13 +61844,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Usuario = function Usuario() {
-    var usuario = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var user = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
     _classCallCheck(this, Usuario);
 
-    this.id = usuario.id;
-    this.nome = usuario.nome;
-    this.email = usuario.email;
+    this.id = user.id;
+    this.name = user.name;
+    this.email = user.email;
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (Usuario);
@@ -61946,7 +61953,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    props: ["usuario"]
+    props: ["user"]
 });
 
 /***/ }),
@@ -61956,7 +61963,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col-md-3"
-  }, [_c('div', [_c('h3', [_vm._v(_vm._s(_vm.usuario.nome))]), _vm._v(" "), _c('h6', [_vm._v(_vm._s(_vm.usuario.email))])])])
+  }, [_c('div', [_c('h3', [_vm._v(_vm._s(_vm.user.name))]), _vm._v(" "), _c('h6', [_vm._v(_vm._s(_vm.user.email))])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -61973,11 +61980,11 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', [_c('pesquisar-usuario'), _vm._v(" "), _c('div', {
     staticClass: "row"
-  }, _vm._l((_vm.usuarios), function(usuario) {
+  }, _vm._l((_vm.users), function(user) {
     return _c('usuario-item', {
-      key: usuario.id,
+      key: user.id,
       attrs: {
-        "usuario": usuario
+        "user": user
       }
     })
   }))], 1)
@@ -116305,8 +116312,8 @@ var mutations = {
     atualizarReuniao: function atualizarReuniao(state, reuniao) {
         state.reuniao = reuniao;
     },
-    adicionarUsuarioReuniao: function adicionarUsuarioReuniao(state, usuario) {
-        state.reuniao.usuarios.push(usuario);
+    adicionarUsuarioReuniao: function adicionarUsuarioReuniao(state, user) {
+        state.reuniao.users.push(user);
     }
 };
 

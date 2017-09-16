@@ -46,7 +46,6 @@ class ReuniaoController extends Controller
     public function store(ReuniaoRequest $request)
     {
         $data = $request->all();
-
         $reuniao = $this->reuniaoBusiness->adicionar($data);
 
         return response()->json($reuniao);

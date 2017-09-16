@@ -2,7 +2,7 @@
     <div>
         <pesquisar-usuario></pesquisar-usuario>
         <div class="row">
-            <usuario-item v-for="usuario in usuarios" :key="usuario.id" :usuario="usuario"></usuario-item>
+            <usuario-item v-for="user in users" :key="user.id" :user="user"></usuario-item>
         </div>
     </div>
 </template>
@@ -14,8 +14,8 @@ import UsuarioItem from './UsuarioItem';
 export default {
     components: {PesquisarUsuario, UsuarioItem},
     computed: {
-        usuarios() {
-            return this.$store.state.reuniao.usuarios;
+        users() {
+            return this.$store.state.reuniao.users;
         }
     }
 }

@@ -11,11 +11,20 @@ class ReuniaoFacadeBD
 
         $reuniao = Reuniao::create($data);
 
+        foreach($data["users"] as $user) {
+            $reuniao->users()->attach($user["id"]);
+        }
+        $reuniao->save();
+
+        $reuniao->users;
         return $reuniao;
     }
 
     public function encontrar($id) {
-        return Reuniao::find($id);
+        $reuniao = Reuniao::find($id);
+        $reuniao->users;
+
+        return $reuniao;
     }
 
     public function editar($id, $data) {
