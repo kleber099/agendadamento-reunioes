@@ -31,7 +31,12 @@
                 <label for="inicio" class="col-md-4 control-label">Inicio</label>
 
                 <div class="col-md-6">
-                    <input id="inicio" type="date" class="form-control" v-model="reuniao.inicio">
+                    <el-date-picker
+                        v-model="reuniao.inicio"
+                        type="date"
+                        format="dd/MM/yyyy"
+                        placeholder="dd/mm/aaaa"
+                        id="inicio"> </el-date-picker>
 
                     <span class="help-block" v-if="erros.inicio.length">
                         <strong>{{ erros.inicio[0] }}</strong>
@@ -43,7 +48,13 @@
                 <label for="fim" class="col-md-4 control-label">Fim</label>
 
                 <div class="col-md-6">
-                    <input id="fim" type="date" class="form-control" v-model="reuniao.fim">
+                    <el-date-picker
+                        v-model="reuniao.fim"
+                        type="date"
+                        format="dd/MM/yyyy"
+                        placeholder="dd/mm/aaaa"
+                        id="fim"> </el-date-picker>
+
 
                     <span class="help-block" v-if="erros.fim.length">
                         <strong>{{ erros.fim[0] }}</strong>

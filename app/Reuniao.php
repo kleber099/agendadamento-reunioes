@@ -25,7 +25,7 @@ class Reuniao extends Model
         foreach ($reunioes as $reuniao) {
             $reuniao['title'] = $reuniao['titulo'];
             $reuniao['start'] = $reuniao['inicio'];
-            $reuniao['end'] = $reuniao['fim'];
+            $reuniao['end'] = "{$reuniao['fim']} 23:59:59";
             $reuniao['url'] = "/reunioes/{$reuniao['id']}/edit";
 
             unset($reuniao['titulo']);

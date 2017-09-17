@@ -9,6 +9,10 @@
 
                     <div class="panel-body">
                         <criar-reuniao :id="{{ $id }}"></criar-reuniao>
+
+                        <div class="form-group">
+                            <a href="{{ route('home') }}"class="btn btn-primary">Voltar</a>
+                        </div>
                     </div>
                 </div>
             </div>
