@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -7,7 +6,17 @@
 
 require('./bootstrap');
 
+import CriarReuniao from './components/reuniao/CriarReuniao.vue';
+
+import ElementUI from 'element-ui';
+import locale from 'element-ui/lib/locale/lang/pt-br';
+import Vuex from 'vuex';
+
+import store from './store';
+
 window.Vue = require('vue');
+window.Vue.use(ElementUI, { locale });
+window.Vue.use(Vuex);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -17,6 +26,9 @@ window.Vue = require('vue');
 
 Vue.component('example', require('./components/Example.vue'));
 
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store,
+    components: {CriarReuniao}
 });
