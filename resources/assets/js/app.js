@@ -9,12 +9,13 @@ require('./bootstrap');
 import CriarReuniao from './components/reuniao/CriarReuniao.vue';
 
 import ElementUI from 'element-ui';
+import locale from 'element-ui/lib/locale/lang/pt-br';
 import Vuex from 'vuex';
 
 import store from './store';
 
 window.Vue = require('vue');
-window.Vue.use(ElementUI);
+window.Vue.use(ElementUI, { locale });
 window.Vue.use(Vuex);
 
 /**
