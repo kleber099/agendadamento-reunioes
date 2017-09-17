@@ -86,7 +86,6 @@ class ReuniaoController extends Controller
         $data = $request->all();
 
         $reuniao = $this->reuniaoBusiness->editar($id, $data);
-
         return response()->json($reuniao);
     }
 

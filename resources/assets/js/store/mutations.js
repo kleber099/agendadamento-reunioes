@@ -13,6 +13,10 @@ export const mutations = {
         state.reuniao = reuniao;
     },
     adicionarUsuarioReuniao(state, user) {
-        state.reuniao.users.push(user);
+        let userEncontrado = state.reuniao.users.filter( u => u.id == user.id )[0];
+
+        if(!userEncontrado) {
+            state.reuniao.users.push(user);
+        }
     }
 };

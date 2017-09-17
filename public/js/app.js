@@ -1896,7 +1896,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(232)("./" + name);
+            __webpack_require__(238)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -40761,7 +40761,8 @@ return zhTw;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(154);
-module.exports = __webpack_require__(238);
+__webpack_require__(236);
+module.exports = __webpack_require__(239);
 
 
 /***/ }),
@@ -40775,9 +40776,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_element_ui__ = __webpack_require__(190);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_element_ui___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_element_ui__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fullcalendar__ = __webpack_require__(231);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_fullcalendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_fullcalendar__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__store__ = __webpack_require__(231);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -40785,7 +40784,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  */
 
 __webpack_require__(155);
-
 
 
 
@@ -40804,32 +40802,12 @@ window.Vue.use(__WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */]);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', __webpack_require__(235));
+Vue.component('example', __webpack_require__(233));
 
 var app = new Vue({
-        el: '#app',
-        store: __WEBPACK_IMPORTED_MODULE_4__store__["a" /* default */],
-        components: { CriarReuniao: __WEBPACK_IMPORTED_MODULE_0__components_reuniao_CriarReuniao_vue___default.a }
-});
-
-$('#calendar').fullCalendar({
-        locale: 'pt-br',
-        events: '/reunioes'
-
-        /*eventClick: function(calEvent, jsEvent, view) {
-              alert('Event: ' + calEvent.title);
-            alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-            alert('View: ' + view.name);
-              // change the border color just for fun
-            $(this).css('border-color', 'red');
-          },
-        dayClick: function(date, jsEvent, view) {
-              alert('Clicked on: ' + date.format());
-              alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-              alert('Current view: ' + view.name);
-              // change the day's background color just for fun
-            $(this).css('background-color', 'red');
-          }*/
+  el: '#app',
+  store: __WEBPACK_IMPORTED_MODULE_3__store__["a" /* default */],
+  components: { CriarReuniao: __WEBPACK_IMPORTED_MODULE_0__components_reuniao_CriarReuniao_vue___default.a }
 });
 
 /***/ }),
@@ -61797,6 +61775,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             if (queryString.length == 1 || queryString.length % 3 == 0) {
                 axios.get('/users/' + queryString + '/buscar').then(function (res) {
+
                     //converte os resultados em um formato válido para o componente
                     _this.links = res.data;
 
@@ -61812,6 +61791,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     _this.results = queryString ? links.filter(_this.createFilter(queryString)) : links;
 
+                    console.log(_this.results);
+
                     //função que retorna os resultados
                     cb(_this.results);
                 });
@@ -61825,7 +61806,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         createFilter: function createFilter(queryString) {
             return function (link) {
-                return link.value.indexOf(queryString.toLowerCase()) === 0;
+                return link.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0;
             };
         },
         handleSelect: function handleSelect(item) {
@@ -98170,6 +98151,173 @@ function isDef(val) {
 
 /***/ }),
 /* 231 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutations__ = __webpack_require__(232);
+
+
+
+
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
+
+var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
+  state: __WEBPACK_IMPORTED_MODULE_2__mutations__["b" /* state */],
+  mutations: __WEBPACK_IMPORTED_MODULE_2__mutations__["a" /* mutations */]
+
+});
+
+/* harmony default export */ __webpack_exports__["a"] = (store);
+
+/***/ }),
+/* 232 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return state; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return mutations; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dominio_Reuniao__ = __webpack_require__(27);
+
+
+
+var state = {
+    reuniao: new __WEBPACK_IMPORTED_MODULE_0__dominio_Reuniao__["a" /* default */]()
+
+};
+
+var mutations = {
+    atualizarReuniao: function atualizarReuniao(state, reuniao) {
+        state.reuniao = reuniao;
+    },
+    adicionarUsuarioReuniao: function adicionarUsuarioReuniao(state, user) {
+        var userEncontrado = state.reuniao.users.filter(function (u) {
+            return u.id == user.id;
+        })[0];
+
+        if (!userEncontrado) {
+            state.reuniao.users.push(user);
+        }
+    }
+};
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var Component = __webpack_require__(8)(
+  /* script */
+  __webpack_require__(234),
+  /* template */
+  __webpack_require__(235),
+  /* styles */
+  null,
+  /* scopeId */
+  null,
+  /* moduleIdentifier (server only) */
+  null
+)
+Component.options.__file = "D:\\PHP\\agendadamento-reunioes\\resources\\assets\\js\\components\\Example.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-874748fe", Component.options)
+  } else {
+    hotAPI.reload("data-v-874748fe", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 234 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    mounted: function mounted() {
+        console.log('Component mounted.');
+    }
+});
+
+/***/ }),
+/* 235 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "container"
+  }, [_c('div', {
+    staticClass: "row"
+  }, [_c('div', {
+    staticClass: "col-md-8 col-md-offset-2"
+  }, [_c('div', {
+    staticClass: "panel panel-default"
+  }, [_c('div', {
+    staticClass: "panel-heading"
+  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
+    staticClass: "panel-body"
+  }, [_vm._v("\n                    I'm an example component!\n                ")])])])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-874748fe", module.exports)
+  }
+}
+
+/***/ }),
+/* 236 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_fullcalendar__ = __webpack_require__(237);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_fullcalendar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_fullcalendar__);
+
+
+$('#calendar').fullCalendar({
+    locale: 'pt-br',
+    events: '/reunioes'
+});
+
+/***/ }),
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -116018,7 +116166,7 @@ return FC; // export for Node/CommonJS
 });
 
 /***/ }),
-/* 232 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -116267,156 +116415,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 232;
+webpackContext.id = 238;
 
 /***/ }),
-/* 233 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vuex__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mutations__ = __webpack_require__(234);
-
-
-
-
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */]);
-
-var store = new __WEBPACK_IMPORTED_MODULE_1_vuex__["a" /* default */].Store({
-  state: __WEBPACK_IMPORTED_MODULE_2__mutations__["b" /* state */],
-  mutations: __WEBPACK_IMPORTED_MODULE_2__mutations__["a" /* mutations */]
-
-});
-
-/* harmony default export */ __webpack_exports__["a"] = (store);
-
-/***/ }),
-/* 234 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return state; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return mutations; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__dominio_Reuniao__ = __webpack_require__(27);
-
-
-
-var state = {
-    reuniao: new __WEBPACK_IMPORTED_MODULE_0__dominio_Reuniao__["a" /* default */]()
-
-};
-
-var mutations = {
-    atualizarReuniao: function atualizarReuniao(state, reuniao) {
-        state.reuniao = reuniao;
-    },
-    adicionarUsuarioReuniao: function adicionarUsuarioReuniao(state, user) {
-        state.reuniao.users.push(user);
-    }
-};
-
-/***/ }),
-/* 235 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var Component = __webpack_require__(8)(
-  /* script */
-  __webpack_require__(236),
-  /* template */
-  __webpack_require__(237),
-  /* styles */
-  null,
-  /* scopeId */
-  null,
-  /* moduleIdentifier (server only) */
-  null
-)
-Component.options.__file = "D:\\PHP\\agendadamento-reunioes\\resources\\assets\\js\\components\\Example.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key.substr(0, 2) !== "__"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Example.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-874748fe", Component.options)
-  } else {
-    hotAPI.reload("data-v-874748fe", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 236 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    mounted: function mounted() {
-        console.log('Component mounted.');
-    }
-});
-
-/***/ }),
-/* 237 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "container"
-  }, [_c('div', {
-    staticClass: "row"
-  }, [_c('div', {
-    staticClass: "col-md-8 col-md-offset-2"
-  }, [_c('div', {
-    staticClass: "panel panel-default"
-  }, [_c('div', {
-    staticClass: "panel-heading"
-  }, [_vm._v("Example Component")]), _vm._v(" "), _c('div', {
-    staticClass: "panel-body"
-  }, [_vm._v("\n                    I'm an example component!\n                ")])])])])])
-}]}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-874748fe", module.exports)
-  }
-}
-
-/***/ }),
-/* 238 */
+/* 239 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

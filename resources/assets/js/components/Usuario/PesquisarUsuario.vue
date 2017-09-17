@@ -31,6 +31,7 @@ import Usuario from '../../dominio/Usuario';
                 if ( queryString.length == 1 || queryString.length % 3 == 0 ) {
                     axios.get(`/users/${queryString}/buscar`)
                         .then(res => {
+
                             //converte os resultados em um formato válido para o componente
                             this.links = res.data;
 
@@ -46,6 +47,8 @@ import Usuario from '../../dominio/Usuario';
 
                             this.results = queryString ? links.filter(this.createFilter(queryString)) : links;
 
+                            console.log(this.results);
+
                             //função que retorna os resultados
                             cb(this.results);
                         });
@@ -59,7 +62,7 @@ import Usuario from '../../dominio/Usuario';
             },
             createFilter(queryString) {
                 return (link) => {
-                    return (link.value.indexOf(queryString.toLowerCase()) === 0);
+                    return (link.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
                 };
             },
             handleSelect(item) {
