@@ -91,10 +91,17 @@
             }
 
         },
+        computed: {
+            users() {
+                return this.$store.state.reuniao.users;
+            }
+        },
         methods: {
             cadastrar() {
                 this.sucesso = '';
                 this.limparErros();
+
+                this.reuniao.users = this.users;
 
                 if (this.id) {
                     this.atualizar()

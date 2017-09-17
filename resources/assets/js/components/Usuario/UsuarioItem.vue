@@ -1,15 +1,15 @@
 <template>
     <div class="col-md-3">
         <div>
-            <h3>{{ usuario.nome }}</h3>
-            <h6>{{ usuario.email }}</h6>
+            <h3>{{ user.name }}</h3>
+            <h6>{{ user.email }}</h6>
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        props: ["usuario"]
+        props: ["user"]
     }
 </script>
 

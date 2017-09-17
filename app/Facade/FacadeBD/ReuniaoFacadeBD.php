@@ -11,11 +11,23 @@ class ReuniaoFacadeBD
 
         $reuniao = Reuniao::create($data);
 
+        if(isset($data["users"]) ) {
+            foreach ($data["users"] as $user) {
+                $reuniao->users()->attach($user["id"]);
+            }
+            $reuniao->save();
+        }
+
+        $reuniao->users;
+
         return $reuniao;
     }
 
     public function encontrar($id) {
-        return Reuniao::find($id);
+        $reuniao = Reuniao::find($id);
+        $reuniao->users;
+
+        return $reuniao;
     }
 
     public function editar($id, $data) {
@@ -23,7 +35,20 @@ class ReuniaoFacadeBD
 
         $reuniao->update($data);
 
-        return $reuniao;
+        if(isset($data["users"]) ) {
+
+            foreach ($data["users"] as $user) {
+                $usuarioEncontrado = $this->encontrarUsuarioReuniao($reuniao, $user['id']);
+
+                if ($usuarioEncontrado == null) {
+
+                    $reuniao->users()->attach($user['id']);
+                }
+            }
+            $reuniao->save();
+        }
+
+        return $reuniao = $this->encontrar($id);;
     }
 
     public function eventos() {
@@ -31,4 +56,10 @@ class ReuniaoFacadeBD
 
         return $reuniao->eventos();
     }
+
+    private function encontrarUsuarioReuniao(Reuniao $reuniao, $idUsuario){
+        return $reuniao->users->find($idUsuario);
+    }
+
+
 }

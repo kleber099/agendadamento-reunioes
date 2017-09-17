@@ -12,7 +12,11 @@ export const mutations = {
     atualizarReuniao(state, reuniao) {
         state.reuniao = reuniao;
     },
-    adicionarUsuarioReuniao(state, usuario) {
-        state.reuniao.usuarios.push(usuario);
+    adicionarUsuarioReuniao(state, user) {
+        let userEncontrado = state.reuniao.users.filter( u => u.id == user.id )[0];
+
+        if(!userEncontrado) {
+            state.reuniao.users.push(user);
+        }
     }
 };

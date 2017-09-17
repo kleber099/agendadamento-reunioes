@@ -31,20 +31,23 @@ import Usuario from '../../dominio/Usuario';
                 if ( queryString.length == 1 || queryString.length % 3 == 0 ) {
                     axios.get(`/users/${queryString}/buscar`)
                         .then(res => {
+
                             //converte os resultados em um formato válido para o componente
                             this.links = res.data;
 
                             //monta a lista de resultados
                             let links = this.links.map(item => {
-                                const usuario = item;
-                                usuario.id = item.id;
-                                usuario.value = item.name;
-                                usuario.nome = item.name;
-                                usuario.email = item.email;
-                                return usuario;
+                                const user = item;
+                                user.id = item.id;
+                                user.value = item.name;
+                                user.name = item.name;
+                                user.email = item.email;
+                                return user;
                             });
 
                             this.results = queryString ? links.filter(this.createFilter(queryString)) : links;
+
+                            console.log(this.results);
 
                             //função que retorna os resultados
                             cb(this.results);
@@ -59,12 +62,12 @@ import Usuario from '../../dominio/Usuario';
             },
             createFilter(queryString) {
                 return (link) => {
-                    return (link.value.indexOf(queryString.toLowerCase()) === 0);
+                    return (link.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
                 };
             },
             handleSelect(item) {
-                let usuario = new Usuario(item);
-                this.$store.commit('adicionarUsuarioReuniao', usuario);
+                let user = new Usuario(item);
+                this.$store.commit('adicionarUsuarioReuniao', user);
                 this.texto = '';
 
             }

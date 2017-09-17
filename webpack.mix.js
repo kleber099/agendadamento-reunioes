@@ -11,7 +11,7 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
+mix.js(['resources/assets/js/app.js', 'resources/assets/js/fullcalendar.js'], 'public/js')
     .copy('node_modules/element-ui/lib/theme-default', 'public/css/element-theme')
     .copy('node_modules/fullcalendar/dist/fullcalendar.css', 'public/css/fullcalendar/fullcalendar.css')
     .copy('node_modules/fullcalendar/dist/locale', 'public/css/fullcalendar/locale')

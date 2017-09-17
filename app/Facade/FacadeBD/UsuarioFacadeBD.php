@@ -9,8 +9,13 @@ use App\User;
 class UsuarioFacadeBD
 {
     public function buscar($nome){
-        $usuarios = User::where('name', 'like', "%$nome%")->get();
+
+        $usuarios = User::where('name', 'ilike', "%$nome%")->get();
 
         return $usuarios;
+    }
+
+    public function encontrar($id) {
+        return User::find($id);
     }
 }
